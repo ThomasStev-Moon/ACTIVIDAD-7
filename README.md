@@ -1,5 +1,5 @@
 # ACTIVIDAD 7 
-# 🐍 Taller: Python, MySQL y Análisis de Datos - Actividad 
+# 🐍 Taller: Python, MySQL y Análisis de Datos - Actividad 7
 
 Proyecto desarrollado en **Python + Streamlit + MySQL** que recorre:
 
