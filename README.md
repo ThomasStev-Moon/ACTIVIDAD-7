@@ -1,5 +1,7 @@
-# ACTIVIDAD 7 
+# ACTIVIDAD 7
 # 🐍 Taller: Python, MySQL y Análisis de Datos - Actividad 7
+
+**Autor:** [Thomas Stev Arismendi](https://github.com/ThomasStev-Moon)
 
 Proyecto desarrollado en **Python + Streamlit + MySQL** que recorre:
 
@@ -239,3 +241,397 @@ for fila in cursor:
 
 cursor.close()
 cnx.close()
+```
+
+**✅ Resultado esperado:**
+```
+ID: 1 | Nombre: Ana Gómez | Edad: 20 | Correo: ana@email.com
+ID: 2 | Nombre: Carlos Ruiz | Edad: 22 | Correo: carlos@email.com
+ID: 3 | Nombre: María López | Edad: 21 | Correo: maria@email.com
+```
+
+### En Visual Studio Code
+
+MySQL ya está instalado en el PC. Solo se instala la librería:
+
+```bash
+pip install mysql-connector-python pandas
+```
+
+Y se conecta con `root` + contraseña local. Los datos **quedan guardados permanentemente**.
+
+**Diferencias clave:**
+
+| Aspecto | Colab | VS Code |
+|---------|-------|---------|
+| ¿Hay que instalar MySQL? | Sí, cada vez | Solo una vez |
+| ¿Los datos se guardan? | ❌ Se borran al cerrar | ✅ Permanentes |
+| ¿Sirve para producción? | No | Sí |
+| ¿Ideal para? | Pruebas rápidas | Proyectos reales |
+
+## 2.3 Librerías: pandas, polars, scipy
+
+| Librería | ¿Qué hace? | ¿Cuándo usarla? |
+|----------|-----------|-----------------|
+| **pandas** | Maneja tablas (DataFrames), como Excel pero en código | Análisis de datos general |
+| **polars** | Igual que pandas, pero **mucho más rápido** | Datos grandes (millones de filas) |
+| **scipy** | Cálculos matemáticos y científicos avanzados | Estadística, optimización, física |
+
+**Ejemplo con pandas:**
+
+```python
+import pandas as pd
+df = pd.DataFrame({"nombre": ["Ana", "Luis"], "edad": [20, 22]})
+print(df)
+```
+
+**Ejemplo con polars:**
+
+```python
+import polars as pl
+df2 = pl.DataFrame({"nombre": ["Ana", "Luis"], "edad": [20, 22]})
+print(df2)
+```
+
+**Ejemplo con scipy:**
+
+```python
+from scipy import stats
+datos = [1, 2, 3, 4, 5]
+print("Media:", stats.tmean(datos))
+print("Desviación estándar:", stats.tstd(datos))
+```
+
+**Integración MySQL + pandas:**
+
+```python
+import pandas as pd
+df = pd.read_sql("SELECT * FROM clientes", cnx)
+print(df)
+```
+
+👉 `pd.read_sql()` combina SQL + pandas → traes los datos y los analizas en una sola línea.
+
+## 2.4 Infografía
+
+📌 **Título:** *"MySQL + Python: La Pareja Perfecta para los Datos"*
+
+**Secciones:**
+1. **¿Qué es MySQL?** — Base de datos relacional más usada del mundo.
+2. **¿Qué es Python?** — Lenguaje fácil y poderoso.
+3. **¿Cómo se conectan?** — `mysql-connector-python` + `pd.read_sql()`.
+4. **Aplicaciones reales** — banca, salud, comercio, educación, logística.
+5. **Ventajas** — automatización, análisis, reportes, IA.
+6. **Alcance** — usado por el 70% de las empresas del mundo.
+
+🖼️ *Ver archivo `punto4_infografia.png`*
+
+---
+
+# 🗄️ Punto 3: Diseño de BD y Requerimientos
+
+## 3.1 Elementos necesarios para conformar una BD
+
+| Elemento | ¿Qué es? | Ejemplo |
+|----------|----------|---------|
+| **Entidades** | Cosas del mundo real | Cliente, Producto |
+| **Atributos** | Características | nombre, precio |
+| **Registros** | Cada fila | "Ana / Bogotá" |
+| **Columnas** | Cada campo | id, nombre |
+| **Tipos de datos** | Qué se guarda | INT, VARCHAR |
+| **PK** | Identificador único | id_cliente |
+| **FK** | Conecta tablas | pedido → cliente_id |
+
+## 3.2 Propuesta de estructura: Base de datos "tienda_db"
+
+### 🔹 Tabla: clientes
+
+| Columna | Tipo | Restricción |
+|---------|------|-------------|
+| id | INT | PK, AUTO_INCREMENT |
+| nombre | VARCHAR(64) | NOT NULL |
+| ciudad | VARCHAR(64) | — |
+| correo | VARCHAR(100) | UNIQUE |
+| telefono | VARCHAR(20) | — |
+| fecha_registro | DATE | DEFAULT hoy |
+
+### 🔹 Tabla: productos
+
+| Columna | Tipo | Restricción |
+|---------|------|-------------|
+| id | INT | PK, AUTO_INCREMENT |
+| nombre | VARCHAR(64) | NOT NULL |
+| precio | DECIMAL(10,2) | NOT NULL |
+| stock | INT | DEFAULT 0 |
+| categoria | VARCHAR(50) | — |
+| fecha_ingreso | DATE | — |
+
+### 🔹 Tabla: pedidos
+
+| Columna | Tipo | Restricción |
+|---------|------|-------------|
+| id | INT | PK, AUTO_INCREMENT |
+| cliente_id | INT | FK → clientes(id) |
+| producto_id | INT | FK → productos(id) |
+| cantidad | INT | DEFAULT 1 |
+| fecha | DATE | NOT NULL |
+| total | DECIMAL(10,2) | — |
+| estado | VARCHAR(20) | DEFAULT 'pendiente' |
+
+### 🔗 Relaciones entre tablas
+
+```
+┌─────────────┐         ┌─────────────┐
+│  CLIENTES   │         │  PRODUCTOS  │
+│─────────────│         │─────────────│
+│ id (PK)     │         │ id (PK)     │
+│ nombre      │         │ nombre      │
+│ ciudad      │         │ precio      │
+│ correo      │         │ stock       │
+└──────┬──────┘         └──────┬──────┘
+       │                       │
+       │   ┌──────────────┐    │
+       └──▶│   PEDIDOS    │◀───┘
+           │──────────────│
+           │ id (PK)      │
+           │ cliente_id(FK)│
+           │ producto_id(FK)│
+           │ cantidad     │
+           │ fecha        │
+           │ total        │
+           └──────────────┘
+```
+
+## 3.3 Propuesta de desarrollo
+
+1. **Análisis** — Identificar entidades, atributos y reglas de negocio.
+2. **Diseño** — Modelo Entidad-Relación, tipos de datos, PKs y FKs.
+3. **Implementación en MySQL** — Crear BD con `CREATE TABLE`.
+4. **Conexión Python + Streamlit** — Formularios para insertar y consultar.
+5. **Pruebas y despliegue** — Validar relaciones y subir a GitHub.
+
+**Script SQL propuesto:**
+
+```sql
+CREATE DATABASE tienda_db;
+USE tienda_db;
+
+CREATE TABLE clientes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(64) NOT NULL,
+    ciudad VARCHAR(64),
+    correo VARCHAR(100) UNIQUE,
+    telefono VARCHAR(20),
+    fecha_registro DATE
+);
+
+CREATE TABLE productos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(64) NOT NULL,
+    precio DECIMAL(10,2) NOT NULL,
+    stock INT DEFAULT 0,
+    categoria VARCHAR(50),
+    fecha_ingreso DATE
+);
+
+CREATE TABLE pedidos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    cliente_id INT,
+    producto_id INT,
+    cantidad INT DEFAULT 1,
+    fecha DATE NOT NULL,
+    total DECIMAL(10,2),
+    estado VARCHAR(20) DEFAULT 'pendiente',
+    FOREIGN KEY (cliente_id) REFERENCES clientes(id),
+    FOREIGN KEY (producto_id) REFERENCES productos(id)
+);
+```
+
+## 3.4 Requerimientos funcionales del aplicativo
+
+| Código | Requerimiento | Descripción |
+|--------|---------------|-------------|
+| **RF01** | Registrar clientes | Crear clientes con nombre, ciudad, correo y teléfono. |
+| **RF02** | Listar clientes | Ver todos los clientes en una tabla. |
+| **RF03** | Editar clientes | Modificar datos de un cliente existente. |
+| **RF04** | Eliminar clientes | Borrar clientes con confirmación. |
+| **RF05** | Registrar productos | Agregar productos con nombre, precio, stock y categoría. |
+| **RF06** | Listar productos | Ver el inventario completo. |
+| **RF07** | Actualizar stock | Ajustar unidades cuando se vende o repone. |
+| **RF08** | Registrar pedidos | Crear pedidos asociando un cliente y un producto. |
+| **RF09** | Calcular total automático | Multiplicar cantidad × precio. |
+| **RF10** | Cambiar estado del pedido | pendiente → enviado → entregado. |
+| **RF11** | Consultar pedidos por cliente | Filtrar pedidos de un cliente específico. |
+| **RF12** | Reporte de ventas totales | Sumar todo lo vendido por cliente o fecha. |
+| **RF13** | Exportar a Excel/CSV | Descargar datos en formato de hoja de cálculo. |
+| **RF14** | Buscar productos | Buscar por nombre o categoría. |
+| **RF15** | Autenticación básica | Solo usuarios registrados pueden modificar datos. |
+
+**Requerimientos NO funcionales:**
+
+| Código | Requerimiento | Descripción |
+|--------|---------------|-------------|
+| **RNF01** | Rapidez | Las consultas deben responder en menos de 2 segundos. |
+| **RNF02** | Usabilidad | La interfaz debe ser clara e intuitiva. |
+| **RNF03** | Seguridad | Las contraseñas deben ir cifradas. |
+| **RNF04** | Disponibilidad | Debe funcionar en cualquier navegador. |
+| **RNF05** | Escalabilidad | Debe soportar miles de registros sin caerse. |
+
+---
+
+## 🛠️ Tecnologías usadas
+
+- [Python 3.10+](https://www.python.org/)
+- [MySQL 8.0](https://www.mysql.com/)
+- [Streamlit](https://streamlit.io/)
+- [Pandas](https://pandas.pydata.org/)
+- [Polars](https://www.pola.rs/)
+- [SciPy](https://scipy.org/)
+- [Google Colab](https://colab.research.google.com/)
+- [Visual Studio Code](https://code.visualstudio.com/)
+
+---
+
+## 📁 Estructura del repositorio
+
+```
+ACTIVIDAD-7/
+├── README.md
+├── requirements.txt
+├── punto1_excel_tipos_datos.md
+├── punto2_mysql_colab.ipynb
+├── punto2_streamlit/
+│   ├── app.py
+│   ├── db.py
+│   └── requirements.txt
+├── punto3_diseno_bd.md
+├── punto4_infografia.png
+└── capturas/
+    └── punto2_resultado.png
+```
+
+### `requirements.txt`
+
+```txt
+streamlit
+mysql-connector-python
+pandas
+polars
+scipy
+```
+
+---
+
+## 🚀 Instalación
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/ThomasStev-Moon/ACTIVIDAD-7.git
+cd ACTIVIDAD-7
+```
+
+### 2. Crear entorno virtual
+
+**Windows:**
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+**macOS / Linux:**
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### 3. Instalar dependencias
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## ▶️ Uso
+
+### 🐍 Notebook de Colab (Punto 2)
+
+Abre `punto2_mysql_colab.ipynb` en Google Colab y ejecuta la celda completa.
+
+### 🖥️ App Streamlit (Punto 2)
+
+```bash
+cd punto2_streamlit
+python -m streamlit run app.py
+```
+
+Abre en `http://localhost:8501`.
+
+### 📊 Script de Excel (Punto 1)
+
+Abre `punto1_excel_tipos_datos.md` para ver el detalle.
+
+---
+
+## 🐛 Problemas conocidos
+
+### `Access denied for user 'root'`
+
+Verifica que la contraseña en `app.py` y `db.py` coincida con la de tu MySQL local.
+
+### `Can't connect to MySQL server`
+
+MySQL no está corriendo. Inícialo desde **Servicios de Windows** (`services.msc`) o con `net start MySQL80`.
+
+### `streamlit: command not found`
+
+Usa `python -m streamlit run app.py` en lugar de `streamlit run app.py`.
+
+---
+
+## 📚 Aprendizajes
+
+- Comprensión de los **tipos de datos** en bases de datos (INT, VARCHAR, DATE, DECIMAL…).
+- Análisis del **impacto de los sistemas informáticos** en banca, salud y comercio.
+- Creación de **tablas en Excel** con filtros, ordenamiento y modificaciones.
+- Comparación entre **Excel y bases de datos reales**.
+- Filosofía del **Zen de Python** y su aplicación al escribir código limpio.
+- Conexión de **Python con MySQL** tanto en **Google Colab** como en **Visual Studio Code**.
+- Uso de **pandas, polars y scipy** para análisis de datos.
+- **Diseño de bases de datos** con entidades, atributos, PKs y FKs.
+- Análisis de **requerimientos funcionales y no funcionales** de un aplicativo.
+- Creación de una **infografía** sobre MySQL + Python y sus aplicaciones.
+
+---
+
+## 👨‍💻 Autor
+
+**Thomas Stev Arismendi**
+🔗 [github.com/ThomasStev-Moon](https://github.com/ThomasStev-Moon)
+
+Actividad 7 — Programación de Software SENA
+
+📅 Octubre 2026
+📍 Colombia
+
+---
+
+## 📄 Licencia
+
+Este proyecto es de uso educativo. Puedes usarlo, modificarlo y compartirlo libremente.
+
+---
+
+## 🙏 Agradecimientos
+
+- Al instructor por la guía del taller.
+- A la comunidad de **Streamlit** por la documentación.
+- A **MySQL** y **Python** por ser herramientas accesibles y poderosas.
+- A mis compañeros por aportar ideas y datos de prueba.
+
+---
+
+> ⭐ Si te sirvió este proyecto, dale una estrella al repositorio. ¡Gracias!
