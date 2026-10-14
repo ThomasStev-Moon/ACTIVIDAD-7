@@ -1,111 +1,201 @@
 # ACTIVIDAD 7 
+# 🐍 Taller: Python, MySQL y Análisis de Datos - Actividad 
 
-> **"Sin importar qué carrera o especialidad estudies, terminarás enviando correos electrónicos y usando Excel."**
+Proyecto desarrollado en **Python + Streamlit + MySQL** que recorre:
 
-Repositorio con el desarrollo completo del taller: tipos de datos, Excel, Zen de Python, MySQL, análisis de datos y diseño de bases de datos.
+1. **🟩 Tipos de Datos y Excel** — Investigación sobre los tipos de datos en bases de datos, análisis del impacto de los sistemas informáticos y creación de tablas en Excel.
+2. **🐍 Zen de Python + MySQL** — Filosofía del lenguaje, desarrollo en Colab y VS Code, análisis de librerías y una infografía.
+3. **🗄️ Diseño de Base de Datos** — Propuesta completa con entidades, atributos, relaciones y análisis de requerimientos funcionales.
 
----
-
-## 📚 Tabla de contenidos
-
-- [PUNTO 1: Tipos de Datos, Excel y Sistemas](#-punto-1-tipos-de-datos-excel-y-sistemas)
-- [PUNTO 2: El Zen de Python y MySQL](#-punto-2-el-zen-de-python-y-mysql)
-- [PUNTO 3: Diseño de BD y Requerimientos](#️-punto-3-diseño-de-bd-y-requerimientos)
-- [Tecnologías usadas](#️-tecnologías-usadas)
-- [Estructura del repositorio](#-estructura-del-repositorio)
-- [Cómo ejecutar](#-cómo-ejecutar)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.30%2B-red)
+![Pandas](https://img.shields.io/badge/Pandas-2.0%2B-purple)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
-## 🟩 PUNTO 1: Tipos de Datos, Excel y Sistemas
+## 📋 Tabla de contenido
 
-### 1. Tipos de datos más comunes
+- [🟩 Punto 1: Tipos de Datos, Excel y Sistemas](#-punto-1-tipos-de-datos-excel-y-sistemas)
+- [🐍 Punto 2: Zen de Python y MySQL](#-punto-2-zen-de-python-y-mysql)
+- [🗄️ Punto 3: Diseño de BD y Requerimientos](#️-punto-3-diseño-de-bd-y-requerimientos)
+- [🛠️ Tecnologías usadas](#️-tecnologías-usadas)
+- [📁 Estructura del repositorio](#-estructura-del-repositorio)
+- [🚀 Instalación](#-instalación)
+- [▶️ Uso](#️-uso)
+- [📚 Aprendizajes](#-aprendizajes)
+- [👨‍💻 Autor](#️-autor)
+
+---
+
+# 🟩 Punto 1: Tipos de Datos, Excel y Sistemas
+
+## 1. Tipos de datos más comunes en bases de datos
+
+Los tipos de datos le dicen al sistema qué clase de información puede guardar cada columna.
 
 | Tipo | ¿Qué guarda? |
 |------|--------------|
-| **INT** | Números enteros |
-| **VARCHAR** | Texto variable |
-| **DATE** | Fechas |
-| **DECIMAL** | Decimales exactos |
-| **BOOLEAN** | True / False |
-| **FLOAT** | Decimales aproximados |
+| **INT** | Números enteros (sin decimales) |
+| **VARCHAR** | Texto de longitud variable |
+| **DATE** | Fechas (año-mes-día) |
+| **DECIMAL** | Números con decimales exactos |
+| **CHAR** | Texto de longitud fija |
+| **BOOLEAN** | Verdadero / Falso |
+| **FLOAT** | Números con decimales aproximados |
 | **TEXT** | Textos largos |
 
-### 2. Ejemplos de cada tipo
+## 2. Ejemplos de cada tipo de dato
 
-- **INT:** edad (25), documento (1023456789), stock (150)
-- **VARCHAR:** nombre ("Ana Gómez"), correo ("ana@x.com"), dirección ("Calle 45")
-- **DATE:** nacimiento (2000-05-14), compra (2026-10-02), cita (2026-11-15)
-- **DECIMAL:** precio (19.99), salario (2500.50), impuesto (0.19)
-- **BOOLEAN:** activo (true), pagó (false), admin (true)
+**🔹 INT (entero)**
+1. **Edad** → 25
+2. **Documento de identidad** → 1023456789
+3. **Stock** → 150 unidades
 
-### 3. ¿Qué pienso de "No hay sistema"?
+**🔹 VARCHAR (texto variable)**
+1. **Nombre** → "Ana Gómez"
+2. **Correo** → "ana@gmail.com"
+3. **Dirección** → "Calle 45 #12-30"
 
-Caos, frustración y pérdida de tiempo: datos perdidos, procesos lentos, errores, filas largas, decisiones equivocadas.
+**🔹 DATE (fecha)**
+1. **Fecha de nacimiento** → 2000-05-14
+2. **Fecha de compra** → 2026-10-02
+3. **Fecha de cita médica** → 2026-11-15
 
-### 4. Impacto en banca, salud y comercio
+**🔹 DECIMAL (decimal exacto)**
+1. **Precio** → 19.99
+2. **Salario** → 2500.50
+3. **Impuesto** → 0.19
 
-| Sector | Ejemplo histórico |
-|--------|-------------------|
-| 🏦 Banca | Años 70: libros contables manuales |
-| 🏥 Salud | Años 50: carpetas que se perdían |
-| 🛒 Comercio | Años 60: Sears con tarjetas perforadas |
+**🔹 BOOLEAN**
+1. **¿Está activo?** → true
+2. **¿Pagó?** → false
+3. **¿Es administrador?** → true
 
-### 5. Antes de las computadoras
+## 3. ¿Qué pienso cuando escucho "No hay sistema"?
 
-- **Banca:** libro manual, sello, firma, días de espera.
-- **Salud:** ficha en papel, historia clínica física.
+Pienso en **caos, frustración y pérdida de tiempo**. Cuando no hay sistema informático:
 
-### 6. Cuadro comparativo
+- **No se pueden guardar datos** → información perdida.
+- **Se hacen procesos manuales** → más lentos y con errores.
+- **No hay control ni seguimiento** → no sabes qué pasó con un pedido, pago o paciente.
+- **Se duplican o pierden registros** → inconsistencias.
+- **Afecta a las personas** → filas largas, esperas, enojos, decisiones equivocadas.
 
-| Proceso | Antes | Ahora |
-|---------|-------|-------|
-| Transacción bancaria | Libro manual | App, inmediato |
-| Historia clínica | Carpeta física | BD digital |
-| Inventario | Cuadernos | Sistema automatizado |
+**En resumen:** sin sistema, todo se vuelve más lento, inseguro y propenso a errores humanos.
+
+## 4. Impacto en banca, salud y comercio
+
+| Sector | Sin sistemas | Ejemplo histórico |
+|--------|--------------|-------------------|
+| 🏦 **Banca** | No hay registro confiable de saldos, transferencias ni historial | Años 70: los bancos usaban libros contables manuales; un error podía borrar cuentas completas |
+| 🏥 **Salud** | Historias clínicas en papel, recetas perdidas, diagnósticos duplicados | Años 50: si se perdía una carpeta, el paciente debía repetir todos los exámenes |
+| 🛒 **Comercio** | Inventarios desactualizados, ventas sin registro, pérdidas económicas | Años 60: Sears llevaba inventario en tarjetas perforadas; si fallaban, no sabían qué había en bodega |
+
+## 5. Antes de las computadoras
+
+**Banca antes:**
+- Se iba a la sucursal.
+- El cajero anotaba en un libro.
+- Se sellaba y firmaba.
+- Los saldos se actualizaban a mano.
+- Transferencias tardaban días.
+
+**Salud antes:**
+- Se llenaba una ficha en papel.
+- El médico anotaba en la historia clínica física.
+- Los exámenes se archivaban en carpetas.
+- Si se perdía, todo se repetía.
+
+## 6. Cuadro comparativo: antes vs. ahora
+
+| Proceso | Antes (sin tecnología) | Ahora (con sistemas) |
+|---------|------------------------|----------------------|
+| Transacción bancaria | Libro manual, sello, firma | App o cajero automático, inmediato |
+| Historia clínica | Carpeta física | Base de datos digital |
+| Inventario | Tarjetas o cuadernos | Sistema automatizado |
+| Búsqueda de datos | Manual, lenta | Consulta instantánea |
 | Errores | Frecuentes | Menos, con validaciones |
+| Acceso remoto | Imposible | Desde cualquier lugar |
 
-### 7-10. Tablas en Excel
+## 7-10. Tablas en Excel
 
-**🚗 Automóvil:** Mustang GT (Ford), 911 Carrera (Porsche), Model S (Tesla)
+**🚗 Automóvil (auto de tus sueños)**
 
-**🧑‍⚕️ Paciente:** Juan Pérez (20), María López (22), Carlos Ruiz (21)
+| Modelo | Marca |
+|--------|-------|
+| Mustang GT | Ford |
+| 911 Carrera | Porsche |
+| Model S | Tesla |
 
-**🎮 Producto:** PlayStation 5 (499.99), Laptop Gamer (1200), iPhone 16 (999.99)
+**🧑‍⚕️ Paciente**
 
-### 11. Filtros y modificaciones
+| Nombre | Edad |
+|--------|------|
+| Juan Pérez | 20 |
+| María López | 22 |
+| Carlos Ruiz | 21 |
 
-- **Filtrar:** `Ctrl + T` → flecha del encabezado → ordenar A-Z.
-- **Modificar:** clic en la celda.
-- **Eliminar:** clic derecho en la fila → Eliminar.
+**🎮 Producto**
 
-### 12. Excel vs. Base de datos
+| Nombre | Precio |
+|--------|--------|
+| PlayStation 5 | 499.99 |
+| Laptop Gamer | 1200.00 |
+| iPhone 16 | 999.99 |
 
-| Excel | BD real |
-|-------|---------|
-| Un archivo por persona | Multiusuario |
+**Cómo hacerlo en Excel:**
+1. Abre Excel.
+2. Escribe los encabezados en la fila 1.
+3. Llena los datos debajo.
+4. Selecciona todo y presiona **Ctrl + T** para convertir en tabla.
+
+## 11. Filtrar, ordenar, modificar y eliminar
+
+- **Filtrar y ordenar:** Selecciona la tabla → `Ctrl + T` → clic en la flecha del encabezado → ordenar A-Z o de menor a mayor.
+- **Modificar:** clic en una celda y escribe el nuevo valor.
+- **Eliminar:** clic derecho sobre la fila → **Eliminar**.
+
+## 12. Excel vs. Base de datos real
+
+| Excel | Base de datos |
+|-------|----------------|
+| Un archivo por persona | Centralizada y multiusuario |
+| Fácil de usar | Requiere conocimientos |
 | Se corrompe fácil | Muy segura |
-| Sin validaciones | Reglas y restricciones |
-| Sin relaciones | Relaciones entre tablas |
+| Sin validaciones fuertes | Reglas y restricciones |
+| No maneja millones de filas | Millones de registros sin problema |
+| Sin relaciones complejas | Relaciones entre tablas |
+
+👉 **Diferencia clave:** Excel es una **hoja de cálculo**, una base de datos es un **sistema gestor** (MySQL, PostgreSQL, SQL Server).
 
 ---
 
-## 🐍 PUNTO 2: El Zen de Python y MySQL
+# 🐍 Punto 2: Zen de Python y MySQL
 
-### 2.1 Filosofía de Python
+## 2.1 Filosofía de Python
 
-19 aforismos que guían el diseño del lenguaje. Los más importantes:
+Python tiene un conjunto de **19 aforismos filosóficos** que guían el diseño del lenguaje, conocidos como el **Zen de Python**. Se leen ejecutando `import this` en consola.
 
-- **Beautiful is better than ugly** → código bonito
-- **Explicit is better than implicit** → sin adivinar
-- **Simple is better than complex** → lo simple gana
-- **Readability counts** → que se entienda
+| Frase original | En palabras simples |
+|----------------|---------------------|
+| Beautiful is better than ugly | Escribe código bonito, no desordenado |
+| Explicit is better than implicit | Que se entienda qué hace, sin adivinar |
+| Simple is better than complex | Lo simple gana |
+| Readability counts | Otros (y tú en el futuro) deben entenderlo |
+| Errors should never pass silently | No ignores los errores |
+| Now is better than never | Mejor hazlo ya |
 
-🌟 **El que más me gustó:** *"Simple is better than complex"* — porque lo simple funciona mejor, se entiende rápido y tiene menos errores.
+🌟 **El que más me gustó:** *"Simple is better than complex"* (Lo simple es mejor que lo complejo).
 
-### 2.2 Desarrollo en Python + MySQL
+**¿Por qué?** Porque muchas veces uno quiere hacer las cosas rebuscadas, pero al final lo simple funciona mejor, se entiende más rápido y tiene menos errores. Aplica para programar y para la vida.
 
-**En Google Colab:**
+## 2.2 Desarrollo en Python + MySQL
+
+### En Google Colab
+
+Instalar MySQL, arrancarlo, crear la BD, tabla e insertar datos:
 
 ```python
 !apt-get update -qq
