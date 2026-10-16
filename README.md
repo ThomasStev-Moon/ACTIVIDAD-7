@@ -1,637 +1,720 @@
 # ACTIVIDAD 7
-# 🐍 Taller: Python, MySQL y Análisis de Datos - Actividad 7
+# 🚜 AgroDatos Lab · Taller de Bases de Datos MySQL
 
-**Autor:** [Thomas Stev Arismendi](https://github.com/ThomasStev-Moon)
+![MySQL](https://img.shields.io/badge/MySQL-8.0.46-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.13-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Google Colab](https://img.shields.io/badge/Google-Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white)
+![YOLO](https://img.shields.io/badge/YOLO-v8-111F68?style=for-the-badge&logo=yolo&logoColor=white)
+![Estado](https://img.shields.io/badge/Estado-Completado-2E7D32?style=for-the-badge)
+![Licencia](https://img.shields.io/badge/Licencia-MIT-yellow?style=for-the-badge)
 
-Proyecto desarrollado en **Python + Streamlit + MySQL** que recorre:
+> *"Los datos guardados solo sirven si sabemos hacerles preguntas."*
 
-1. **🟩 Tipos de Datos y Excel** — Investigación sobre los tipos de datos en bases de datos, análisis del impacto de los sistemas informáticos y creación de tablas en Excel.
-2. **🐍 Zen de Python + MySQL** — Filosofía del lenguaje, desarrollo en Colab y VS Code, análisis de librerías y una infografía.
-3. **🗄️ Diseño de Base de Datos** — Propuesta completa con entidades, atributos, relaciones y análisis de requerimientos funcionales.
-
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.30%2B-red)
-![Pandas](https://img.shields.io/badge/Pandas-2.0%2B-purple)
-![License](https://img.shields.io/badge/License-MIT-green)
+Taller completo de diseño, normalización y consulta de una base de datos para una **empresa agrícola colombiana** con fincas en Cundinamarca, Caldas y Boyacá. Cubre **DDL**, **integridad referencial**, **DML**, **normalización hasta 3FN** y **visión artificial con YOLO + MySQL**.
 
 ---
 
-## 📋 Tabla de contenido
+## 👤 Autor
 
-- [🟩 Punto 1: Tipos de Datos, Excel y Sistemas](#-punto-1-tipos-de-datos-excel-y-sistemas)
-- [🐍 Punto 2: Zen de Python y MySQL](#-punto-2-zen-de-python-y-mysql)
-- [🗄️ Punto 3: Diseño de BD y Requerimientos](#️-punto-3-diseño-de-bd-y-requerimientos)
-- [🛠️ Tecnologías usadas](#️-tecnologías-usadas)
-- [📁 Estructura del repositorio](#-estructura-del-repositorio)
-- [🚀 Instalación](#-instalación)
-- [▶️ Uso](#️-uso)
-- [📚 Aprendizajes](#-aprendizajes)
-- [👨‍💻 Autor](#️-autor)
+| Campo | Detalle |
+|---|---|
+| **Nombre** | Thomas Stev Arismendi |
+| **Programa** | Programación de Software |
+| **Instructor** | Diego Barragán |
+| **Institución** | SENA |
+| **Fecha** | Octubre 2026 |
 
 ---
 
-# 🟩 Punto 1: Tipos de Datos, Excel y Sistemas
+## 🎨 Diseño del proyecto
 
-## 1. Tipos de datos más comunes en bases de datos
+El proyecto se estructura en **6 puntos** progresivos que simulan el ciclo de vida completo de una base de datos para una empresa agrícola:
 
-Los tipos de datos le dicen al sistema qué clase de información puede guardar cada columna.
+1. **Diseño** (modelado E-R + DDL)
+2. **Integridad** (FK + anexo técnico)
+3. **Consultas** (DML + JOINs + agregaciones)
+4. **Normalización** (de planilla plana a 3FN)
+5. **Inteligencia artificial** (YOLO + detecciones + recomendación agronómica)
+6. **Evaluación** (validación final de conceptos)
 
-| Tipo | ¿Qué guarda? |
-|------|--------------|
-| **INT** | Números enteros (sin decimales) |
-| **VARCHAR** | Texto de longitud variable |
-| **DATE** | Fechas (año-mes-día) |
-| **DECIMAL** | Números con decimales exactos |
-| **CHAR** | Texto de longitud fija |
-| **BOOLEAN** | Verdadero / Falso |
-| **FLOAT** | Números con decimales aproximados |
-| **TEXT** | Textos largos |
-
-## 2. Ejemplos de cada tipo de dato
-
-**🔹 INT (entero)**
-1. **Edad** → 25
-2. **Documento de identidad** → 1023456789
-3. **Stock** → 150 unidades
-
-**🔹 VARCHAR (texto variable)**
-1. **Nombre** → "Ana Gómez"
-2. **Correo** → "ana@gmail.com"
-3. **Dirección** → "Calle 45 #12-30"
-
-**🔹 DATE (fecha)**
-1. **Fecha de nacimiento** → 2000-05-14
-2. **Fecha de compra** → 2026-10-02
-3. **Fecha de cita médica** → 2026-11-15
-
-**🔹 DECIMAL (decimal exacto)**
-1. **Precio** → 19.99
-2. **Salario** → 2500.50
-3. **Impuesto** → 0.19
-
-**🔹 BOOLEAN**
-1. **¿Está activo?** → true
-2. **¿Pagó?** → false
-3. **¿Es administrador?** → true
-
-## 3. ¿Qué pienso cuando escucho "No hay sistema"?
-
-Pienso en **caos, frustración y pérdida de tiempo**. Cuando no hay sistema informático:
-
-- **No se pueden guardar datos** → información perdida.
-- **Se hacen procesos manuales** → más lentos y con errores.
-- **No hay control ni seguimiento** → no sabes qué pasó con un pedido, pago o paciente.
-- **Se duplican o pierden registros** → inconsistencias.
-- **Afecta a las personas** → filas largas, esperas, enojos, decisiones equivocadas.
-
-**En resumen:** sin sistema, todo se vuelve más lento, inseguro y propenso a errores humanos.
-
-## 4. Impacto en banca, salud y comercio
-
-| Sector | Sin sistemas | Ejemplo histórico |
-|--------|--------------|-------------------|
-| 🏦 **Banca** | No hay registro confiable de saldos, transferencias ni historial | Años 70: los bancos usaban libros contables manuales; un error podía borrar cuentas completas |
-| 🏥 **Salud** | Historias clínicas en papel, recetas perdidas, diagnósticos duplicados | Años 50: si se perdía una carpeta, el paciente debía repetir todos los exámenes |
-| 🛒 **Comercio** | Inventarios desactualizados, ventas sin registro, pérdidas económicas | Años 60: Sears llevaba inventario en tarjetas perforadas; si fallaban, no sabían qué había en bodega |
-
-## 5. Antes de las computadoras
-
-**Banca antes:**
-- Se iba a la sucursal.
-- El cajero anotaba en un libro.
-- Se sellaba y firmaba.
-- Los saldos se actualizaban a mano.
-- Transferencias tardaban días.
-
-**Salud antes:**
-- Se llenaba una ficha en papel.
-- El médico anotaba en la historia clínica física.
-- Los exámenes se archivaban en carpetas.
-- Si se perdía, todo se repetía.
-
-## 6. Cuadro comparativo: antes vs. ahora
-
-| Proceso | Antes (sin tecnología) | Ahora (con sistemas) |
-|---------|------------------------|----------------------|
-| Transacción bancaria | Libro manual, sello, firma | App o cajero automático, inmediato |
-| Historia clínica | Carpeta física | Base de datos digital |
-| Inventario | Tarjetas o cuadernos | Sistema automatizado |
-| Búsqueda de datos | Manual, lenta | Consulta instantánea |
-| Errores | Frecuentes | Menos, con validaciones |
-| Acceso remoto | Imposible | Desde cualquier lugar |
-
-## 7-10. Tablas en Excel
-
-**🚗 Automóvil (auto de tus sueños)**
-
-| Modelo | Marca |
-|--------|-------|
-| Mustang GT | Ford |
-| 911 Carrera | Porsche |
-| Model S | Tesla |
-
-**🧑‍⚕️ Paciente**
-
-| Nombre | Edad |
-|--------|------|
-| Juan Pérez | 20 |
-| María López | 22 |
-| Carlos Ruiz | 21 |
-
-**🎮 Producto**
-
-| Nombre | Precio |
-|--------|--------|
-| PlayStation 5 | 499.99 |
-| Laptop Gamer | 1200.00 |
-| iPhone 16 | 999.99 |
-
-**Cómo hacerlo en Excel:**
-1. Abre Excel.
-2. Escribe los encabezados en la fila 1.
-3. Llena los datos debajo.
-4. Selecciona todo y presiona **Ctrl + T** para convertir en tabla.
-
-## 11. Filtrar, ordenar, modificar y eliminar
-
-- **Filtrar y ordenar:** Selecciona la tabla → `Ctrl + T` → clic en la flecha del encabezado → ordenar A-Z o de menor a mayor.
-- **Modificar:** clic en una celda y escribe el nuevo valor.
-- **Eliminar:** clic derecho sobre la fila → **Eliminar**.
-
-## 12. Excel vs. Base de datos real
-
-| Excel | Base de datos |
-|-------|----------------|
-| Un archivo por persona | Centralizada y multiusuario |
-| Fácil de usar | Requiere conocimientos |
-| Se corrompe fácil | Muy segura |
-| Sin validaciones fuertes | Reglas y restricciones |
-| No maneja millones de filas | Millones de registros sin problema |
-| Sin relaciones complejas | Relaciones entre tablas |
-
-👉 **Diferencia clave:** Excel es una **hoja de cálculo**, una base de datos es un **sistema gestor** (MySQL, PostgreSQL, SQL Server).
+Cada punto resuelve un problema real del negocio: desde crear la tabla `lote` hasta convertir una detección del dron en una **recomendación de cuánto producto sacar de bodega**.
 
 ---
 
-# 🐍 Punto 2: Zen de Python y MySQL
+## 📖 Descripción
 
-## 2.1 Filosofía de Python
+La empresa **AgroDatos** necesita registrar:
 
-Python tiene un conjunto de **19 aforismos filosóficos** que guían el diseño del lenguaje, conocidos como el **Zen de Python**. Se leen ejecutando `import this` en consola.
+- **Fincas y lotes** en tres departamentos de Colombia
+- **Insumos de bodega** (fertilizantes, enmiendas, fungicidas, insecticidas, bioinsumos) según su **anexo técnico oficial**
+- **Aplicaciones** en campo (lote + producto + operario + fecha + cantidad)
+- **Detecciones de plagas** realizadas por un dron con **YOLO** (visión artificial)
 
-| Frase original | En palabras simples |
-|----------------|---------------------|
-| Beautiful is better than ugly | Escribe código bonito, no desordenado |
-| Explicit is better than implicit | Que se entienda qué hace, sin adivinar |
-| Simple is better than complex | Lo simple gana |
-| Readability counts | Otros (y tú en el futuro) deben entenderlo |
-| Errors should never pass silently | No ignores los errores |
-| Now is better than never | Mejor hazlo ya |
-
-🌟 **El que más me gustó:** *"Simple is better than complex"* (Lo simple es mejor que lo complejo).
-
-**¿Por qué?** Porque muchas veces uno quiere hacer las cosas rebuscadas, pero al final lo simple funciona mejor, se entiende más rápido y tiene menos errores. Aplica para programar y para la vida.
-
-## 2.2 Desarrollo en Python + MySQL
-
-### En Google Colab
-
-Instalar MySQL, arrancarlo, crear la BD, tabla e insertar datos:
-
-```python
-!apt-get update -qq
-!apt-get install mysql-server -y -qq
-!service mysql start
-!pip install mysql-connector-python -q
-
-!mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'colab_pass';"
-
-import mysql.connector
-
-cnx = mysql.connector.connect(
-    host="127.0.0.1", user="root", password="colab_pass", charset="utf8mb4"
-)
-cursor = cnx.cursor(buffered=True)
-cursor.execute("CREATE DATABASE IF NOT EXISTS taller_python")
-cursor.execute("USE taller_python")
-cursor.execute("""
-    CREATE TABLE IF NOT EXISTS estudiantes (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        nombre VARCHAR(100) NOT NULL,
-        edad INT,
-        correo VARCHAR(100)
-    )
-""")
-
-estudiantes = [
-    ("Ana Gómez", 20, "ana@email.com"),
-    ("Carlos Ruiz", 22, "carlos@email.com"),
-    ("María López", 21, "maria@email.com")
-]
-cursor.executemany(
-    "INSERT INTO estudiantes (nombre, edad, correo) VALUES (%s, %s, %s)",
-    estudiantes
-)
-cnx.commit()
-
-cursor.execute("SELECT id, nombre, edad, correo FROM estudiantes")
-for fila in cursor:
-    print(f"ID: {fila[0]} | Nombre: {fila[1]} | Edad: {fila[2]} | Correo: {fila[3]}")
-
-cursor.close()
-cnx.close()
-```
-
-**✅ Resultado esperado:**
-```
-ID: 1 | Nombre: Ana Gómez | Edad: 20 | Correo: ana@email.com
-ID: 2 | Nombre: Carlos Ruiz | Edad: 22 | Correo: carlos@email.com
-ID: 3 | Nombre: María López | Edad: 21 | Correo: maria@email.com
-```
-
-### En Visual Studio Code
-
-MySQL ya está instalado en el PC. Solo se instala la librería:
-
-```bash
-pip install mysql-connector-python pandas
-```
-
-Y se conecta con `root` + contraseña local. Los datos **quedan guardados permanentemente**.
-
-**Diferencias clave:**
-
-| Aspecto | Colab | VS Code |
-|---------|-------|---------|
-| ¿Hay que instalar MySQL? | Sí, cada vez | Solo una vez |
-| ¿Los datos se guardan? | ❌ Se borran al cerrar | ✅ Permanentes |
-| ¿Sirve para producción? | No | Sí |
-| ¿Ideal para? | Pruebas rápidas | Proyectos reales |
-
-## 2.3 Librerías: pandas, polars, scipy
-
-| Librería | ¿Qué hace? | ¿Cuándo usarla? |
-|----------|-----------|-----------------|
-| **pandas** | Maneja tablas (DataFrames), como Excel pero en código | Análisis de datos general |
-| **polars** | Igual que pandas, pero **mucho más rápido** | Datos grandes (millones de filas) |
-| **scipy** | Cálculos matemáticos y científicos avanzados | Estadística, optimización, física |
-
-**Ejemplo con pandas:**
-
-```python
-import pandas as pd
-df = pd.DataFrame({"nombre": ["Ana", "Luis"], "edad": [20, 22]})
-print(df)
-```
-
-**Ejemplo con polars:**
-
-```python
-import polars as pl
-df2 = pl.DataFrame({"nombre": ["Ana", "Luis"], "edad": [20, 22]})
-print(df2)
-```
-
-**Ejemplo con scipy:**
-
-```python
-from scipy import stats
-datos = [1, 2, 3, 4, 5]
-print("Media:", stats.tmean(datos))
-print("Desviación estándar:", stats.tstd(datos))
-```
-
-**Integración MySQL + pandas:**
-
-```python
-import pandas as pd
-df = pd.read_sql("SELECT * FROM clientes", cnx)
-print(df)
-```
-
-👉 `pd.read_sql()` combina SQL + pandas → traes los datos y los analizas en una sola línea.
-
-## 2.4 Infografía
-
-📌 **Título:** *"MySQL + Python: La Pareja Perfecta para los Datos"*
-
-**Secciones:**
-1. **¿Qué es MySQL?** — Base de datos relacional más usada del mundo.
-2. **¿Qué es Python?** — Lenguaje fácil y poderoso.
-3. **¿Cómo se conectan?** — `mysql-connector-python` + `pd.read_sql()`.
-4. **Aplicaciones reales** — banca, salud, comercio, educación, logística.
-5. **Ventajas** — automatización, análisis, reportes, IA.
-6. **Alcance** — usado por el 70% de las empresas del mundo.
-
-🖼️ *Ver archivo `punto4_infografia.png`*
+El proyecto construye paso a paso la base de datos `agro_campo` en **MySQL**, con restricciones de integridad, vistas, triggers y consultas que se convierten en **decisiones agronómicas**.
 
 ---
 
-# 🗄️ Punto 3: Diseño de BD y Requerimientos
+## 🛠️ Tecnologías
 
-## 3.1 Elementos necesarios para conformar una BD
+| Herramienta | Versión | Uso |
+|---|---|---|
+| **MySQL** | 8.0.46 | Motor de base de datos |
+| **Google Colab** | — | Entorno de ejecución en la nube |
+| **Python** | 3.13 | Lenguaje anfitrión |
+| **PyMySQL** | última | Conector MySQL ↔ Python |
+| **Ultralytics YOLOv8** | v8 | Detección de objetos |
+| **AgroDatos Lab** | 1.0 | Simulador interactivo (5 laboratorios) |
+| **GitHub** | — | Control de versiones y entrega |
 
-| Elemento | ¿Qué es? | Ejemplo |
-|----------|----------|---------|
-| **Entidades** | Cosas del mundo real | Cliente, Producto |
-| **Atributos** | Características | nombre, precio |
-| **Registros** | Cada fila | "Ana / Bogotá" |
-| **Columnas** | Cada campo | id, nombre |
-| **Tipos de datos** | Qué se guarda | INT, VARCHAR |
-| **PK** | Identificador único | id_cliente |
-| **FK** | Conecta tablas | pedido → cliente_id |
+---
 
-## 3.2 Propuesta de estructura: Base de datos "tienda_db"
-
-### 🔹 Tabla: clientes
-
-| Columna | Tipo | Restricción |
-|---------|------|-------------|
-| id | INT | PK, AUTO_INCREMENT |
-| nombre | VARCHAR(64) | NOT NULL |
-| ciudad | VARCHAR(64) | — |
-| correo | VARCHAR(100) | UNIQUE |
-| telefono | VARCHAR(20) | — |
-| fecha_registro | DATE | DEFAULT hoy |
-
-### 🔹 Tabla: productos
-
-| Columna | Tipo | Restricción |
-|---------|------|-------------|
-| id | INT | PK, AUTO_INCREMENT |
-| nombre | VARCHAR(64) | NOT NULL |
-| precio | DECIMAL(10,2) | NOT NULL |
-| stock | INT | DEFAULT 0 |
-| categoria | VARCHAR(50) | — |
-| fecha_ingreso | DATE | — |
-
-### 🔹 Tabla: pedidos
-
-| Columna | Tipo | Restricción |
-|---------|------|-------------|
-| id | INT | PK, AUTO_INCREMENT |
-| cliente_id | INT | FK → clientes(id) |
-| producto_id | INT | FK → productos(id) |
-| cantidad | INT | DEFAULT 1 |
-| fecha | DATE | NOT NULL |
-| total | DECIMAL(10,2) | — |
-| estado | VARCHAR(20) | DEFAULT 'pendiente' |
-
-### 🔗 Relaciones entre tablas
+## 📂 Estructura del repositorio
 
 ```
-┌─────────────┐         ┌─────────────┐
-│  CLIENTES   │         │  PRODUCTOS  │
-│─────────────│         │─────────────│
-│ id (PK)     │         │ id (PK)     │
-│ nombre      │         │ nombre      │
-│ ciudad      │         │ precio      │
-│ correo      │         │ stock       │
-└──────┬──────┘         └──────┬──────┘
-       │                       │
-       │   ┌──────────────┐    │
-       └──▶│   PEDIDOS    │◀───┘
-           │──────────────│
-           │ id (PK)      │
-           │ cliente_id(FK)│
-           │ producto_id(FK)│
-           │ cantidad     │
-           │ fecha        │
-           │ total        │
-           └──────────────┘
+agro-datos-lab/
+├── README.md                    ← este archivo
+├── AgroDatos_Taller.ipynb       ← cuaderno de Colab con todo el código
+└── docs/                        ← capturas de pantalla y evidencias
+    ├── ejercicio0_mysql.png
+    ├── lab1_cardinalidades.png
+    ├── lab2_error_check.png
+    ├── lab2_error_unique.png
+    ├── lab2_aplicacion_fechas.png
+    ├── lab3_error_fk.png
+    ├── lab3_error_check.png
+    ├── lab3_retos_completos.png
+    ├── lab4_dron_detecciones.png
+    ├── lab4_recomendacion.png
+    └── lab5_evaluacion.png
 ```
 
-## 3.3 Propuesta de desarrollo
+---
 
-1. **Análisis** — Identificar entidades, atributos y reglas de negocio.
-2. **Diseño** — Modelo Entidad-Relación, tipos de datos, PKs y FKs.
-3. **Implementación en MySQL** — Crear BD con `CREATE TABLE`.
-4. **Conexión Python + Streamlit** — Formularios para insertar y consultar.
-5. **Pruebas y despliegue** — Validar relaciones y subir a GitHub.
+## 📚 Contenido del taller
 
-**Script SQL propuesto:**
+- [Punto 1 · Modelado y DDL](#punto-1--modelado-y-ddl)
+- [Punto 2 · Integridad referencial e insumos](#punto-2--integridad-referencial-e-insumos)
+- [Punto 3 · Consultas para tomar decisiones (DML)](#punto-3--consultas-para-tomar-decisiones-dml)
+- [Punto 4 · Normalización de una planilla de campo](#punto-4--normalización-de-una-planilla-de-campo)
+- [Punto 5 · Visión artificial con YOLO y MySQL](#punto-5--visión-artificial-con-yolo-y-mysql)
+- [Punto 6 · Evaluación final](#punto-6--evaluación-final)
+
+---
+
+## Punto 1 · Modelado y DDL
+
+### 1.1 Ejercicio 0 · Verificación del entorno
+
+Se verificó la versión de **MySQL 8.0.46** y la hora del servidor desde Google Colab. Evidencia en `docs/ejercicio0_mysql.png`.
+
+### 1.2 Modelo Entidad-Relación
+
+**Entidades principales:**
+
+- **Finca** (`id_finca` PK, nombre, municipio, departamento, altitud_msnm)
+- **Lote** (`id_lote` PK, codigo UK, id_finca FK, cultivo, area_ha, fecha_siembra, estado)
+
+**Cardinalidad principal:** Una finca tiene **muchos** lotes; un lote pertenece a **una sola** finca.
+
+```mermaid
+erDiagram
+    FINCA ||--o{ LOTE : "tiene"
+    FINCA {
+        int id_finca PK
+        string nombre
+        string municipio
+        string departamento
+        int altitud_msnm
+    }
+    LOTE {
+        int id_lote PK
+        string codigo UK
+        int id_finca FK
+        string cultivo
+        decimal area_ha
+        date fecha_siembra
+        string estado
+    }
+```
+
+**Práctica en el simulador:** 5/5 en la actividad de cardinalidades del Laboratorio 1.
+
+### 1.3 Restricciones de la tabla `lote`
+
+| Restricción | Campo | ¿Para qué sirve? |
+|---|---|---|
+| **PRIMARY KEY** | `id_lote` | Identifica cada lote de forma única e irrepetible. No acepta nulos. |
+| **NOT NULL** | `codigo`, `id_finca`, `cultivo`, `area_ha`, `fecha_siembra` | Obliga a que estos campos siempre tengan valor. |
+| **UNIQUE** | `codigo` | Evita que dos lotes tengan el mismo código (ej. dos `ESP-L01`). |
+| **CHECK** | `area_ha > 0` | Impide registrar áreas negativas o cero. |
+| **DEFAULT** | `estado = 'activo'` | Si no se indica estado, se asume `'activo'`. |
+| **FOREIGN KEY** | `id_finca` | Garantiza que el lote pertenezca a una finca existente. |
+
+### 1.4 Pruebas de error (celdas 1.4, 1.5, 1.6)
+
+#### 🔴 Prueba 1.4 — Área negativa (CHECK)
 
 ```sql
-CREATE DATABASE tienda_db;
-USE tienda_db;
+INSERT INTO lote (codigo, id_finca, cultivo, area_ha, fecha_siembra)
+VALUES ('TEST-01', 1, 'papa', -5.00, '2025-05-01');
+```
 
-CREATE TABLE clientes (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(64) NOT NULL,
-    ciudad VARCHAR(64),
-    correo VARCHAR(100) UNIQUE,
-    telefono VARCHAR(20),
-    fecha_registro DATE
+**Error:** `(3819, "Check constraint 'chk_area' is violated.")`  
+**Restricción:** `CHECK (area_ha > 0)`.
+
+#### 🔴 Prueba 1.5 — Código duplicado (UNIQUE)
+
+```sql
+INSERT INTO lote (codigo, id_finca, cultivo, area_ha, fecha_siembra)
+VALUES ('ESP-L01', 1, 'maíz', 2.00, '2025-05-02');
+```
+
+**Error:** `(1062, "Duplicate entry 'ESP-L01' for key 'lote.codigo'")`  
+**Restricción:** `UNIQUE (codigo)`.
+
+#### 🔴 Prueba 1.6 — Campo obligatorio faltante (NOT NULL)
+
+```sql
+INSERT INTO lote (codigo, id_finca, area_ha, fecha_siembra)
+VALUES ('TEST-02', 1, 3.00, '2025-05-03');
+```
+
+**Error:** `(1364, "Field 'cultivo' doesn't have a default value")`  
+**Restricción:** `NOT NULL` en `cultivo`.
+
+### 1.5 RETO 1
+
+**a. Columna `tipo_riego`**
+
+```sql
+ALTER TABLE lote
+ADD COLUMN tipo_riego ENUM('goteo','aspersión','gravedad','secano')
+DEFAULT 'secano';
+```
+
+**b. Tabla `operario`**
+
+```sql
+CREATE TABLE operario (
+    id_operario           INT AUTO_INCREMENT PRIMARY KEY,
+    documento             VARCHAR(20)  NOT NULL UNIQUE,
+    nombre_completo       VARCHAR(120) NOT NULL,
+    telefono              VARCHAR(20),
+    certificado_aplicador BOOLEAN DEFAULT FALSE
 );
+```
 
-CREATE TABLE productos (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(64) NOT NULL,
-    precio DECIMAL(10,2) NOT NULL,
-    stock INT DEFAULT 0,
-    categoria VARCHAR(50),
-    fecha_ingreso DATE
+**c. 3 operarios insertados**
+
+| id | documento | nombre_completo | teléfono | certificado |
+|---|---|---|---|---|
+| 1 | 1012345678 | Juan Pérez | 3105557788 | TRUE |
+| 2 | 1098765432 | María Gómez | 3112223344 | FALSE |
+| 3 | 1033445566 | Carlos Rodríguez | 3204445566 | TRUE |
+
+### 1.6 Reflexiones
+
+**7. ¿Por qué `area_ha` es `DECIMAL(6,2)` y no `FLOAT`?**
+
+Porque `FLOAT` guarda **aproximaciones binarias** y puede generar errores de redondeo (ej. `2.50` se almacenaría como `2.4999999…`). `DECIMAL(6,2)` guarda el valor **exacto** con 2 decimales, crítico al calcular dosis por hectárea, rendimientos o costos.
+
+**8. Validar en HTML vs `CHECK` en MySQL**
+
+| Aspecto | HTML | CHECK MySQL |
+|---|---|---|
+| Dónde valida | Navegador | Motor BD |
+| Seguridad | Burlable | Infranqueable |
+| Velocidad | Inmediata | Post-envío |
+
+**Conviene hacer ambas:** HTML mejora la UX con feedback inmediato; CHECK garantiza integridad real aunque alguien salte el frontend.
+
+**9. Desventaja de usar `ENUM` para cultivo**
+
+Si aparece un cultivo nuevo (arroz), hay que hacer `ALTER TABLE` para modificar el ENUM, lo cual bloquea la tabla y es rígido.
+
+**Alternativa:** tabla catálogo `cultivo (id_cultivo, nombre)` referenciada por FK desde `lote`. Agregar un cultivo es un simple `INSERT`.
+
+---
+
+## Punto 2 · Integridad referencial e insumos
+
+### 2.1 Foreign Keys y `ON DELETE RESTRICT`
+
+```sql
+CREATE TABLE aplicacion (
+    id_aplicacion INT AUTO_INCREMENT PRIMARY KEY,
+    id_lote       INT NOT NULL,
+    id_producto   INT NOT NULL,
+    fecha         DATE NOT NULL,
+    cantidad      DECIMAL(8,2) NOT NULL,
+    CONSTRAINT fk_apl_lote     FOREIGN KEY (id_lote)     REFERENCES lote(id_lote)         ON DELETE RESTRICT,
+    CONSTRAINT fk_apl_producto FOREIGN KEY (id_producto) REFERENCES producto(id_producto) ON DELETE RESTRICT,
+    CONSTRAINT chk_cantidad    CHECK (cantidad > 0)
 );
+```
 
-CREATE TABLE pedidos (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    cliente_id INT,
-    producto_id INT,
-    cantidad INT DEFAULT 1,
-    fecha DATE NOT NULL,
-    total DECIMAL(10,2),
-    estado VARCHAR(20) DEFAULT 'pendiente',
-    FOREIGN KEY (cliente_id) REFERENCES clientes(id),
-    FOREIGN KEY (producto_id) REFERENCES productos(id)
+- **`fk_apl_lote`** impide registrar aplicaciones en lotes inexistentes.
+- **`fk_apl_producto`** impide aplicar productos que no están en bodega.
+- **`ON DELETE RESTRICT`** impide borrar un padre con hijos. Protege trazabilidad: no puedes borrar un lote si tiene aplicaciones.
+
+**Relación N:M lote ↔ producto** resuelta con `aplicacion`:
+
+```mermaid
+erDiagram
+    LOTE ||--o{ APLICACION : "recibe"
+    PRODUCTO ||--o{ APLICACION : "se usa en"
+```
+
+### 2.2 Anexo técnico · 6 productos registrados
+
+| # | Nombre | Tipo | Ingrediente activo | Cat. | ICA | Dosis | Und | Carencia | Reingreso |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | NitroCampo 46 | fertilizante | Urea 46 % N | IV | ICA-DEMO-1001 | 150 | kg | 0 | 0 |
+| 2 | FosfoArranque | fertilizante | Fosfato diamónico | IV | ICA-DEMO-1002 | 100 | kg | 0 | 0 |
+| 3 | CalViva | enmienda | Cal dolomita | IV | ICA-DEMO-1003 | 500 | kg | 0 | 0 |
+| 4 | BioLarva WP | bioinsumo | Bacillus thuringiensis | IV | ICA-DEMO-2001 | 0.5 | kg | 0 | 4 |
+| 5 | RoyaStop 250 EC | fungicida | Triazol 250 g/L | III | ICA-DEMO-3001 | 0.4 | L | 30 | 24 |
+| 6 | TizónFin 80 WP | fungicida | Ditiocarbamato | III | ICA-DEMO-3002 | 2.5 | kg | 14 | 24 |
+
+### 2.3 Pruebas de error
+
+**Error 1 · FK inexistente:**
+
+```sql
+INSERT INTO aplicacion (id_lote, id_producto, fecha, cantidad)
+VALUES (99, 1, '2026-05-15', 10);
+```
+
+**Error:** `(1452, "Cannot add or update a child row: a foreign key constraint fails")`  
+**Restricción:** `fk_apl_lote` protegió la integridad referencial.
+
+### 2.4 RETO 2A · Insertar productos restantes
+
+```sql
+INSERT INTO producto
+(nombre_comercial, tipo, ingrediente_activo, categoria_tox, registro_ica,
+ dosis_ha, unidad, carencia_dias, reingreso_horas, precio_cop)
+VALUES
+('BioLarva WP',     'bioinsumo', 'Bacillus thuringiensis var. kurstaki', 'IV',  'ICA-DEMO-2001', 0.5, 'kg', 0,  4,  95000),
+('RoyaStop 250 EC', 'fungicida', 'Triazol 250 g/L',                     'III', 'ICA-DEMO-3001', 0.4, 'L',  30, 24, 160000),
+('TizónFin 80 WP',  'fungicida', 'Ditiocarbamato 800 g/kg',             'III', 'ICA-DEMO-3002', 2.5, 'kg', 14, 24, 38000);
+```
+
+### 2.5 RETO 2B · Subconsulta y `DATE_ADD`
+
+**Aplicación con subconsulta:**
+
+```sql
+INSERT INTO aplicacion (id_lote, id_producto, fecha, cantidad)
+SELECT
+    (SELECT id_lote     FROM lote     WHERE codigo = 'CAF-L01'),
+    (SELECT id_producto FROM producto WHERE nombre_comercial = 'RoyaStop 250 EC'),
+    '2026-05-10',
+    (SELECT dosis_ha FROM producto WHERE nombre_comercial = 'RoyaStop 250 EC') *
+    (SELECT area_ha  FROM lote     WHERE codigo = 'CAF-L01');
+```
+
+**Consulta con `DATE_ADD`:**
+
+```sql
+SELECT a.id_aplicacion, l.codigo AS lote, p.nombre_comercial,
+       a.fecha, p.carencia_dias,
+       DATE_ADD(a.fecha, INTERVAL p.carencia_dias DAY) AS cosecha_desde
+FROM aplicacion a
+JOIN lote l     ON l.id_lote = a.id_lote
+JOIN producto p ON p.id_producto = a.id_producto
+ORDER BY a.fecha;
+```
+
+### 2.6 Reflexiones
+
+**7. Error al insertar aplicación en lote 99**
+
+`Error 1452` — el motor rechazó la fila por la llave foránea.  
+**Sin FK en una web:** se guardarían aplicaciones huérfanas que romperían reportes y JOINs.
+
+**8. ¿Por qué no se pudo borrar la finca 1?**
+
+Porque `lote` tiene `ON DELETE RESTRICT` referenciando a `finca`, y la finca 1 tiene lotes hijos.
+
+**Caso para `ON DELETE CASCADE`:** al borrar una `imagen`, que se borren automáticamente sus `detecciones` asociadas (datos derivados que no tienen sentido sin la imagen).
+
+**9. Categoría toxicológica equivocada aceptada por el motor**
+
+Porque `CHECK` solo verifica que el valor esté dentro del dominio (I, II, III, IV), pero no puede saber cuál es el correcto para ese producto. La BD no "lee" el anexo técnico.
+
+**Controles en la web:**
+- Validación cruzada contra registro ICA oficial
+- Precargar datos del anexo y solo permitir confirmar
+- Auditoría con log de usuario/acción/timestamp
+
+**10. Operario entrando al lote 10 h después de RoyaStop**
+
+El dato que debió impedirlo es `reingreso_horas = 24` en la tabla `producto`.
+
+**Cómo mostrarlo en la web:**
+
+```
+⛔ ACCESO RESTRINGIDO
+Última aplicación: RoyaStop 250 EC · 10/05/2026 08:00
+Reingreso permitido a partir de: 11/05/2026 08:00
+Faltan: 14 h
+```
+
+---
+
+## Punto 3 · Consultas para tomar decisiones (DML)
+
+### 3.1 a 3.4 · Consultas base
+
+| # | Consulta | Pregunta del agrónomo |
+|---|---|---|
+| 3.1 | INNER JOIN aplicacion + lote + producto | ¿Qué se aplicó en cada lote y cuándo? |
+| 3.2 | GROUP BY por lote | ¿Cuánto se ha aplicado en total por lote? |
+| 3.3 | LEFT JOIN + WHERE IS NULL | ¿Qué lotes nunca han recibido aplicación? |
+| 3.4 | CASE sobredosis/subdosis | ¿Qué aplicaciones están fuera del rango del anexo? |
+
+### 3.2 Expresión CASE de la consulta 3.4
+
+```sql
+CASE
+    WHEN a.cantidad > l.area_ha * p.dosis_ha * 1.10 THEN 'SOBREDOSIS'
+    WHEN a.cantidad < l.area_ha * p.dosis_ha * 0.90 THEN 'SUBDOSIS'
+    ELSE 'DOSIS CORRECTA'
+END AS diagnostico
+```
+
+Compara la **cantidad real aplicada** contra la **dosis esperada** (área × dosis anexo) y emite diagnóstico con margen de tolerancia ±10 %.
+
+### 3.3 RETO 3
+
+**a. Área total por cultivo:**
+
+```sql
+SELECT cultivo, SUM(area_ha) AS area_total
+FROM lote GROUP BY cultivo ORDER BY area_total DESC;
+```
+
+**b. Fincas con más de 5 ha (HAVING):**
+
+```sql
+SELECT f.nombre, SUM(l.area_ha) AS area_total
+FROM finca f JOIN lote l ON l.id_finca = f.id_finca
+GROUP BY f.id_finca, f.nombre
+HAVING SUM(l.area_ha) > 5
+ORDER BY area_total DESC;
+```
+
+**c. Productos sin aplicación:**
+
+```sql
+SELECT p.nombre_comercial FROM producto p
+LEFT JOIN aplicacion a ON a.id_producto = p.id_producto
+WHERE a.id_aplicacion IS NULL;
+```
+
+**d. Operario top en kg de fertilizante:**
+
+```sql
+SELECT o.nombre_completo, SUM(a.cantidad) AS kg_aplicados
+FROM aplicacion a
+JOIN operario o ON o.id_operario = a.id_operario
+JOIN producto p ON p.id_producto = a.id_producto
+WHERE p.tipo = 'fertilizante' AND p.unidad = 'kg'
+GROUP BY o.id_operario, o.nombre_completo
+ORDER BY kg_aplicados DESC LIMIT 1;
+```
+
+### 3.4 Práctica en simulador · Laboratorio 4
+
+6 retos resueltos correctamente. Errores de FK y CHECK comparados con MySQL.
+
+### 3.5 Reflexiones
+
+**5. LEFT JOIN vs JOIN en 3.3**
+
+Con `INNER JOIN` la consulta devolvería 0 filas (por el `WHERE IS NULL`). El `LEFT JOIN` conserva todos los lotes y rellena con NULL los sin aplicación. Es la técnica **anti-join** para encontrar "lo que falta".
+
+**6. ¿Por qué `GROUP BY l.codigo, l.cultivo` además de `l.id_lote`?**
+
+Porque en MySQL 8 con `ONLY_FULL_GROUP_BY` (por defecto), toda columna del SELECT que no esté en función de agregado debe declararse en el GROUP BY. `l.codigo` y `l.cultivo` no son agregados → van obligatoriamente.
+
+**7. Costo por hectárea: SQL o JavaScript**
+
+**Conviene SQL:**
+- **Transferencia:** traer 10.000 filas al navegador vs devolver solo el resumen
+- **Seguridad:** JS expone datos crudos; SQL filtra por rol
+- **Consistencia:** todos los usuarios ven el mismo cálculo
+
+**Excepción:** cálculos interactivos (sliders) pueden precalcular en SQL y ajustar deltas en JS.
+
+---
+
+## Punto 4 · Normalización de una planilla de campo
+
+### 4.1 Anomalías detectadas en `planilla_campo`
+
+- **Actualización:** operario `1012345678` con dos teléfonos distintos (filas 1-4 con `3105557788`, fila 7 con `9999999999`)
+- **Inserción:** no se puede registrar un operario sin asignarle una aplicación
+- **Borrado:** al borrar la única aplicación de `BioLarva WP`, se pierde toda la información del producto
+
+### 4.2 Consulta de auditoría
+
+```sql
+SELECT documento_operario, nombre_operario,
+       COUNT(DISTINCT telefono_operario) AS num_telefonos,
+       GROUP_CONCAT(DISTINCT telefono_operario) AS telefonos
+FROM planilla_campo
+GROUP BY documento_operario, nombre_operario
+HAVING COUNT(DISTINCT telefono_operario) > 1;
+```
+
+Detecta la **huella digital de la anomalía de actualización**: un dato repetido que cambia solo en algunas filas.
+
+### 4.3 Dependencia transitiva eliminada
+
+En la planilla: `fila → documento_operario → nombre_operario, telefono`
+
+Al crear `operario_n` con `documento` como PK, los datos del operario viven en **un solo lugar** y se referencian por FK. **3FN alcanzada.**
+
+### 4.4 RETO 4
+
+**a. Tabla `aplicacion_n` en 3FN:**
+
+```sql
+CREATE TABLE aplicacion_n (
+    id_aplicacion      INT AUTO_INCREMENT PRIMARY KEY,
+    fecha              DATE NOT NULL,
+    id_lote            INT NOT NULL,
+    id_producto        INT NOT NULL,
+    cantidad           DECIMAL(8,2) NOT NULL,
+    documento_operario VARCHAR(20),
+    observaciones      TEXT,
+    CONSTRAINT fk_apln_lote     FOREIGN KEY (id_lote)            REFERENCES lote(id_lote),
+    CONSTRAINT fk_apln_producto FOREIGN KEY (id_producto)        REFERENCES producto(id_producto),
+    CONSTRAINT fk_apln_operario FOREIGN KEY (documento_operario) REFERENCES operario_n(documento)
 );
 ```
 
-## 3.4 Requerimientos funcionales del aplicativo
+**b. Migración con INSERT … SELECT:**
 
-| Código | Requerimiento | Descripción |
-|--------|---------------|-------------|
-| **RF01** | Registrar clientes | Crear clientes con nombre, ciudad, correo y teléfono. |
-| **RF02** | Listar clientes | Ver todos los clientes en una tabla. |
-| **RF03** | Editar clientes | Modificar datos de un cliente existente. |
-| **RF04** | Eliminar clientes | Borrar clientes con confirmación. |
-| **RF05** | Registrar productos | Agregar productos con nombre, precio, stock y categoría. |
-| **RF06** | Listar productos | Ver el inventario completo. |
-| **RF07** | Actualizar stock | Ajustar unidades cuando se vende o repone. |
-| **RF08** | Registrar pedidos | Crear pedidos asociando un cliente y un producto. |
-| **RF09** | Calcular total automático | Multiplicar cantidad × precio. |
-| **RF10** | Cambiar estado del pedido | pendiente → enviado → entregado. |
-| **RF11** | Consultar pedidos por cliente | Filtrar pedidos de un cliente específico. |
-| **RF12** | Reporte de ventas totales | Sumar todo lo vendido por cliente o fecha. |
-| **RF13** | Exportar a Excel/CSV | Descargar datos en formato de hoja de cálculo. |
-| **RF14** | Buscar productos | Buscar por nombre o categoría. |
-| **RF15** | Autenticación básica | Solo usuarios registrados pueden modificar datos. |
-
-**Requerimientos NO funcionales:**
-
-| Código | Requerimiento | Descripción |
-|--------|---------------|-------------|
-| **RNF01** | Rapidez | Las consultas deben responder en menos de 2 segundos. |
-| **RNF02** | Usabilidad | La interfaz debe ser clara e intuitiva. |
-| **RNF03** | Seguridad | Las contraseñas deben ir cifradas. |
-| **RNF04** | Disponibilidad | Debe funcionar en cualquier navegador. |
-| **RNF05** | Escalabilidad | Debe soportar miles de registros sin caerse. |
-
----
-
-## 🛠️ Tecnologías usadas
-
-- [Python 3.10+](https://www.python.org/)
-- [MySQL 8.0](https://www.mysql.com/)
-- [Streamlit](https://streamlit.io/)
-- [Pandas](https://pandas.pydata.org/)
-- [Polars](https://www.pola.rs/)
-- [SciPy](https://scipy.org/)
-- [Google Colab](https://colab.research.google.com/)
-- [Visual Studio Code](https://code.visualstudio.com/)
-
----
-
-## 📁 Estructura del repositorio
-
-```
-ACTIVIDAD-7/
-├── README.md
-├── requirements.txt
-├── punto1_excel_tipos_datos.md
-├── punto2_mysql_colab.ipynb
-├── punto2_streamlit/
-│   ├── app.py
-│   ├── db.py
-│   └── requirements.txt
-├── punto3_diseno_bd.md
-├── punto4_infografia.png
-└── capturas/
-    └── punto2_resultado.png
+```sql
+INSERT INTO aplicacion_n
+(fecha, id_lote, id_producto, cantidad, documento_operario, observaciones)
+SELECT p.fecha, l.id_lote, pr.id_producto, p.cantidad_aplicada,
+       p.documento_operario, p.observaciones
+FROM planilla_campo p
+JOIN lote l      ON l.codigo           = p.codigo_lote
+JOIN producto pr ON pr.nombre_comercial = p.nombre_producto;
 ```
 
-### `requirements.txt`
+**c. Reconstrucción de la planilla:**
 
-```txt
-streamlit
-mysql-connector-python
-pandas
-polars
-scipy
+```sql
+SELECT a.fecha, l.codigo AS codigo_lote, l.cultivo, l.area_ha,
+       p.nombre_comercial, p.tipo, p.categoria_tox,
+       p.dosis_ha, p.unidad, p.carencia_dias, p.reingreso_horas,
+       a.cantidad, o.documento, o.nombre_completo, o.telefono,
+       a.observaciones
+FROM aplicacion_n a
+JOIN lote l       ON l.id_lote     = a.id_lote
+JOIN producto p   ON p.id_producto = a.id_producto
+JOIN operario_n o ON o.documento   = a.documento_operario
+ORDER BY a.fecha;
 ```
 
----
+### 4.5 Modelo E-R antes y después
 
-## 🚀 Instalación
+**Antes (planilla plana):**
 
-### 1. Clonar el repositorio
-
-```bash
-git clone https://github.com/ThomasStev-Moon/ACTIVIDAD-7.git
-cd ACTIVIDAD-7
+```mermaid
+erDiagram
+    PLANILLA_CAMPO {
+        int fila PK
+        date fecha
+        string codigo_lote
+        string nombre_producto
+        string nombre_operario
+        string telefono_operario
+        string observaciones
+    }
 ```
 
-### 2. Crear entorno virtual
+**Después (3FN):**
 
-**Windows:**
-
-```bash
-python -m venv .venv
-.venv\Scripts\activate
+```mermaid
+erDiagram
+    LOTE ||--o{ APLICACION_N : "recibe"
+    PRODUCTO ||--o{ APLICACION_N : "se usa en"
+    OPERARIO_N ||--o{ APLICACION_N : "realiza"
 ```
 
-**macOS / Linux:**
+### 4.6 Reflexiones
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
+**6. ¿De qué depende `categoria_tox`?**
+
+Del **producto**, no de la aplicación. Violaba **2FN** (dependencia parcial): `categoria_tox` no dependía de la PK de la aplicación, sino del producto.
+
+**7. ¿`observaciones` cumple 1FN?**
+
+**No**, contiene valores no atómicos (`"cogollero en 30% de plantas"` mezcla tipo, porcentaje y unidad).
+
+**Rediseño:**
+
+```sql
+CREATE TABLE observacion_plaga (
+    id_observacion INT AUTO_INCREMENT PRIMARY KEY,
+    id_aplicacion  INT NOT NULL,
+    plaga          VARCHAR(50),
+    porcentaje     DECIMAL(5,2),
+    unidad         VARCHAR(20),
+    nota_libre     TEXT,
+    FOREIGN KEY (id_aplicacion) REFERENCES aplicacion_n(id_aplicacion)
+);
 ```
 
-### 3. Instalar dependencias
+**8. ¿Cuándo desnormalizar a propósito?**
 
-```bash
-pip install -r requirements.txt
+Cuando la **performance de lectura** importa más que la consistencia perfecta. Ejemplo: dashboards con miles de consultas diarias → tabla de resumen precalculada. **Regla:** es una decisión consciente y documentada, no un accidente.
+
+---
+
+## Punto 5 · Visión artificial con YOLO y MySQL
+
+### 5.1 Modelo E-R de visión artificial
+
+```mermaid
+erDiagram
+    LOTE ||--o{ IMAGEN : "sobrevolado"
+    IMAGEN ||--o{ DETECCION : "contiene"
+    CLASE_OBJETIVO ||--o{ DETECCION : "clasifica"
+    PRODUCTO ||--o{ CLASE_OBJETIVO : "sugerido para"
 ```
 
----
+**¿Por qué `deteccion` no guarda `codigo_lote`?**
 
-## ▶️ Uso
+Porque ya lo tiene vía `imagen.id_lote`. Guardarlo sería redundante (viola 3FN) y crearía una anomalía de actualización. Se obtiene con JOIN cuando se necesite.
 
-### 🐍 Notebook de Colab (Punto 2)
+### 5.2 YOLO real · Detecciones guardadas
 
-Abre `punto2_mysql_colab.ipynb` en Google Colab y ejecuta la celda completa.
+Con `SUBIR_FOTO = True` se subió una imagen y se guardaron las detecciones en `imagen` y `deteccion` (coordenadas normalizadas 0-1).
 
-### 🖥️ App Streamlit (Punto 2)
+**Nota:** el modelo COCO detectó clases genéricas (broccoli, person...) porque no conoce plagas reales. Para producción se necesita un modelo entrenado.
 
-```bash
-cd punto2_streamlit
-python -m streamlit run app.py
+### 5.3 Simulación de 30 vuelos
+
+- **Imágenes guardadas:** 30
+- **Detecciones guardadas:** (cantidad variable)
+- **Modelo:** `yolo-agro-v1`
+
+### 5.4 Vista `v_recomendacion`
+
+```sql
+CREATE OR REPLACE VIEW v_recomendacion AS
+SELECT l.codigo AS lote, l.cultivo, l.area_ha,
+       d.clase, c.umbral_dano,
+       COUNT(*) AS detecciones,
+       ROUND(COUNT(*) / l.area_ha, 2) AS densidad_por_ha,
+       c.producto_sugerido, p.dosis_ha, p.unidad,
+       ROUND(p.dosis_ha * l.area_ha, 2) AS cantidad_bodega,
+       p.carencia_dias, p.reingreso_horas
+FROM deteccion d
+JOIN imagen i          ON i.id_imagen = d.id_imagen
+JOIN lote l            ON l.id_lote = i.id_lote
+JOIN clase_objetivo c  ON c.clase = d.clase
+LEFT JOIN producto p   ON p.id_producto = c.id_producto
+WHERE d.confianza >= 0.5
+GROUP BY l.codigo, l.cultivo, l.area_ha, d.clase, c.umbral_dano,
+         c.producto_sugerido, p.dosis_ha, p.unidad,
+         p.carencia_dias, p.reingreso_horas;
 ```
 
-Abre en `http://localhost:8501`.
+### 5.5 TRIGGER `trg_alerta_plaga`
 
-### 📊 Script de Excel (Punto 1)
+```sql
+CREATE TRIGGER trg_alerta_plaga
+AFTER INSERT ON deteccion
+FOR EACH ROW
+BEGIN
+    DECLARE v_lote VARCHAR(20);
+    DECLARE v_umbral INT;
+    DECLARE v_total INT;
 
-Abre `punto1_excel_tipos_datos.md` para ver el detalle.
+    IF NEW.confianza >= 0.75 THEN
+        SELECT l.codigo INTO v_lote
+        FROM imagen i JOIN lote l ON l.id_lote = i.id_lote
+        WHERE i.id_imagen = NEW.id_imagen;
 
----
+        SELECT umbral_dano INTO v_umbral
+        FROM clase_objetivo WHERE clase = NEW.clase;
 
-## 🐛 Problemas conocidos
+        SELECT COUNT(*) INTO v_total
+        FROM deteccion d JOIN imagen i ON i.id_imagen = d.id_imagen
+        WHERE i.id_imagen = NEW.id_imagen
+          AND d.clase = NEW.clase AND d.confianza >= 0.5;
 
-### `Access denied for user 'root'`
+        IF v_total > v_umbral THEN
+            INSERT INTO alerta_plaga (id_deteccion, clase, lote_codigo, mensaje)
+            VALUES (NEW.id_deteccion, NEW.clase, v_lote,
+                    CONCAT('Alerta: ', NEW.clase, ' en lote ', v_lote,
+                           ' (', v_total, ' detecciones, umbral ', v_umbral, ')'));
+        END IF;
+    END IF;
+END;
+```
 
-Verifica que la contraseña en `app.py` y `db.py` coincida con la de tu MySQL local.
+**Explicación línea por línea:**
 
-### `Can't connect to MySQL server`
+- `AFTER INSERT ON deteccion` → se dispara al insertar una detección
+- `FOR EACH ROW` → una vez por fila
+- `IF NEW.confianza >= 0.75` → solo actúa si la confianza es alta
+- Obtiene código del lote vía JOIN `deteccion → imagen → lote`
+- Obtiene umbral de daño desde `clase_objetivo`
+- Cuenta detecciones válidas (confianza ≥ 0.5) de esa clase en esa imagen
+- Si supera el umbral, inserta alerta en `alerta_plaga`
 
-MySQL no está corriendo. Inícialo desde **Servicios de Windows** (`services.msc`) o con `net start MySQL80`.
+### 5.6 RETO 5
 
-### `streamlit: command not found`
+**a. Tendencia por lote y semana:**
 
-Usa `python -m streamlit run app.py` en lugar de `streamlit run app.py`.
+```sql
+SELECT l.codigo AS lote, YEARWEEK(i.fecha_hora, 1) AS semana,
+       d.clase, COUNT(*) AS detecciones_validas
+FROM deteccion d
+JOIN imagen i ON i.id_imagen = d.id_imagen
+JOIN lote l   ON l.id_lote = i.id_lote
+WHERE d.confianza >= 0.5 AND d.clase <> 'maleza'
+GROUP BY l.codigo, semana, d.clase
+ORDER BY l.codigo, semana;
+```
 
----
+**b. Densidad por hectárea:**
 
-## 📚 Aprendizajes
+```sql
+SELECT l.codigo, l.cultivo, l.area_ha, d.clase,
+       COUNT(*) AS detecciones,
+       ROUND(COUNT(*) / l.area_ha, 2) AS por_hectarea
+FROM deteccion d
+JOIN imagen i ON i.id_imagen = d.id_imagen
+JOIN lote l   ON l.id_lote = i.id_lote
+WHERE d.confianza >= 0.5 AND d.clase <> 'maleza'
+GROUP BY l.codigo, l.cultivo, l.area_ha, d.clase
+ORDER BY por_hectarea DESC;
+```
 
-- Comprensión de los **tipos de datos** en bases de datos (INT, VARCHAR, DATE, DECIMAL…).
-- Análisis del **impacto de los sistemas informáticos** en banca, salud y comercio.
-- Creación de **tablas en Excel** con filtros, ordenamiento y modificaciones.
-- Comparación entre **Excel y bases de datos reales**.
-- Filosofía del **Zen de Python** y su aplicación al escribir código limpio.
-- Conexión de **Python con MySQL** tanto en **Google Colab** como en **Visual Studio Code**.
-- Uso de **pandas, polars y scipy** para análisis de datos.
-- **Diseño de bases de datos** con entidades, atributos, PKs y FKs.
-- Análisis de **requerimientos funcionales y no funcionales** de un aplicativo.
-- Creación de una **infografía** sobre MySQL + Python y sus aplicaciones.
+**c. Calidad con distintos umbrales:**
 
----
+```sql
+SELECT
+    SUM(CASE WHEN confianza >= 0.30 THEN 1 ELSE 0 END) AS umbral_030,
+    SUM(CASE WHEN confianza >= 0.45 THEN 1 ELSE 0 END) AS umbral_045,
+    SUM(CASE WHEN confianza >= 0.60 THEN 1 ELSE 0 END) AS umbral_060,
+    SUM(CASE WHEN confianza >= 0.75 THEN 1 ELSE 0 END) AS umbral_075
+FROM deteccion WHERE clase = 'maleza';
+```
 
-## 👨‍💻 Autor
+**d. Comparar versiones del modelo:**
 
-**Thomas Stev Arismendi**
-🔗 [github.com/ThomasStev-Moon](https://github.com/ThomasStev-Moon)
-
-Actividad 7 — Programación de Software SENA
-
-📅 Octubre 2026
-📍 Colombia
-
----
-
-## 📄 Licencia
-
-Este proyecto es de uso educativo. Puedes usarlo, modificarlo y compartirlo libremente.
-
----
-
-## 🙏 Agradecimientos
-
-- Al instructor por la guía del taller.
-- A la comunidad de **Streamlit** por la documentación.
-- A **MySQL** y **Python** por ser herramientas accesibles y poderosas.
-- A mis compañeros por aportar ideas y datos de prueba.
-
----
-
-> ⭐ Si te sirvió este proyecto, dale una estrella al repositorio. ¡Gracias!
+```sql
+ALTER TABLE deteccion
+ADD COL
